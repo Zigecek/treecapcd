@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "treecapcd",
+  "version": "${version}",
+  "name": "treecapcd",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Zigecek/treecapcd"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "zige.treecap.treecapcd.client.TreecapcdClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
