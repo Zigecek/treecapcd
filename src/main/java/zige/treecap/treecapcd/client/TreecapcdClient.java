@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.time.Duration;
+import java.time.Instant;
 
 @Environment(EnvType.CLIENT)
 public class TreecapcdClient implements ClientModInitializer {
@@ -25,12 +27,16 @@ public class TreecapcdClient implements ClientModInitializer {
 
         if (handStackName.equals("TREECAPITATOR_AXE")) {
             new Thread(() -> {
+                Instant start = Instant.now();
                 while (!world.getBlockState(pos).isAir()) {
+                    if (Duration.between(start, Instant.now()).toMillis() > 2000 ){
+                        return;
+                    }
                 }
                 isCoolDown = true;
                 new Thread(() -> {
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(2000 - Duration.between(start, Instant.now()).toMillis());
                         isCoolDown = false;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
